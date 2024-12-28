@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one  .spring  .metadata{
+            display: flexbox;
+            flex-direction: column;
+        }
+        .language{
+            float: right;
+            margin-right: 800px;
+            margin-top: -36px;
+        }
+        .main1 {
+    flex: 1; /* Prend l'espace restant pour pousser le footer vers le bas */
+}
+        .main2{
+        float:right;    
+        margin-right: 300px;
+        margin-top: -455px;
+        height: 1200px;
+        }
+        body{
+            max-width: 1400px;
+            margin: 0 auto;
+            max-height: 900px;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .vertical-hr{
+            width: 0.5px; /* Épaisseur de la ligne */
+            height: 410px; /* Hauteur de la ligne */
+            background-color: darkslategray;
+            border: none; /* Supprime les bordures par défaut */
+            margin-top: -462px;
+        }
+        .metadata {
+            font-family: Arial, sans-serif;
+        }
+        
+        .metadata label {
+            display: inline-block;
+            width: 120px; /* Largeur fixe pour aligner les labels */
+        }
+        .metadata input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #ccc; /* Bordure visible uniquement en bas */
+            width: 250px; /* Ajuster la largeur */
+            padding: 5px;
+            outline: none;
+        }
+        .metadata input[type="text"]:focus {
+            border-bottom: 2px solid #007BFF; /* Couleur différente lors du focus */
+        }
+        .metadata .form-group {
+            margin-bottom: 15px; /* Espace entre chaque ligne */
+        }
+        .metadata .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espace entre les radios */
+        }
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+
+        /* Container pour les boutons */
+        .toggle-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; /* Espacement entre les boutons */
+        }
+
+        /* Styles des boutons */
+        .toggle-btn {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Espace entre l'icône et le texte */
+            transition: background-color 0.3s;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+
+        .toggle-btn:hover {
+            background-color: #ddd;
+        }
+
+        /* Icônes */
+        .toggle-btn i {
+            font-size: 18px;
+        }
+
+        /* Boutons spécifiques */
+        .dark-mode-btn {
+            background-color: #fff;
+            color: white;
+            border-width: 0.5px;
+        }
+
+        .dark-mode-btn:hover {
+            background-color: #333;
+        }
+
+        .light-mode-btn {
+            background-color: #fff;
+            color: white;
+            border-color: black;
+            border-width: 0.5px;
+        }
+
+        .light-mode-btn:hover {
+            background-color: #ffc107;
+            border-color:#ffc107;
+        }
+        footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #f1f1f1;
+        max-width: 1400px;
+        }
+        /* Zone contenant les dépendances sélectionnées (limitées à 330px de hauteur) */
+.added-dependencies-container {
+  max-height: 330px;  /* Hauteur maximale pour la zone d'ajout */
+  overflow-y: auto;   /* Permet le défilement vertical */
+  border: 1px solid #ccc;  /* Optionnel : Ajoute une bordure autour de la zone */
+  padding: 10px;  /* Optionnel : Ajoute du padding autour du contenu */
+}
+
+/* Zone contenant la liste des dépendances disponibles */
+.dependencies-container {
+  max-height: 330px;  /* Limite la hauteur de la zone d'affichage */
+  overflow-y: auto;   /* Permet le défilement vertical si nécessaire */
+  padding: 10px;  /* Optionnel : Ajoute un peu de padding autour du contenu */
+  background-color: #fff;  /* Ajoute un fond blanc */
+  position: absolute;  /* Positionner la liste en absolu par rapport au bouton */
+  z-index: 10;  /* Assure que la liste soit au-dessus du reste du contenu */
+}
+
+    </style>
+</head>
+<body>
+    <h2>Project builder</h2>
+    <div class="toggle-container">
+        <!-- Bouton pour le mode sombre -->
+        <button class="toggle-btn dark-mode-btn" id="darkModeBtn">
+            <i>🌙</i>
+        </button>
+
+        <!-- Bouton pour le mode clair -->
+        <button class="toggle-btn light-mode-btn" id="lightModeBtn">
+            <i>☀️</i>
+        </button>
+    </div>
+    <hr>
+    <div class="main1">
+       <div>
+            <div class="one">
+                <div class="project">
+                    <label for="Project"><b>Project</b></label>
+                    <input type="radio" name="gradle" id="gradle-groovy" value="Gradle-Groovy"> Gradle - Groovy <br>
+                    <input type="radio" name="gradle" id="gradle-kotlin" value="Gradle-Kotlin"> Gradle - Kotlin <input type="radio" name="gradle" id="maven" value="Maven"> Maven
+                </div>
+                <div class="language" >
+                    <label for="Language"><b>Language</b></label>
+                    <input type="radio" name="language" id="Java">Java<input type="radio" name="language" id="kotlin">Kotlin<input type="radio" name="language" id="groovy">Groovy
+                </div>
+            </div><br>
+            <div class="spring">
+                <label for="Springboot"><b>Spring Boot</b></label>
+                <input type="radio" value="3.4.2" id="3.4.2" name="version">3.4.2(SNAPSHOT)<input type="radio" value="3.4.1" id="3.4.1" name="version">3.4.1<input type="radio" value="3.3.8" id="3.3.8" name="version">3.3.8(SNAPSHOT)<input type="radio" value="3.3.7" id="3.3.7" name="version">3.3.7
+            </div>
+            <div class="metadata">
+                <h2>Project Metadata</h2>
+        
+                <div class="form-group">
+                    <label for="Group">Group</label>
+                    <input type="text" id="Group" value="com.example" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="Artifact">Artifact</label>
+                    <input type="text" id="Artifact" value="demo" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" id="Name" value="demo" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <input type="text" id="Description" value="Demo Spring Project" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="PackageName">Package Name</label>
+                    <input type="text" id="PackageName" value="com.example.demo" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="Packaging">Packaging</label>
+                    <div class="radio-group">
+                        <input type="radio" id="Jar" name="Packaging" value="Jar" required>
+                        <label for="Jar">Jar</label>
+                        <input type="radio" id="War" name="Packaging" value="War" required>
+                        <label for="War">War</label>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="Java">Java Version</label><div class="radio-group">
+                        <input type="radio" id="Java23" name="JavaVersion" value="23" required>
+                        <label for="Java23">23</label>
+                        <input type="radio" id="Java21" name="JavaVersion" value="21" required>
+                        <label for="Java21">21</label>
+                        <input type="radio" id="Java17" name="JavaVersion" value="17" required>
+                        <label for="Java17">17</label>
+                    </div>
+                    
+                </div>
+            </div>
+       </div>
+       <div>
+        
+        <div></div>
+       </div>
+       <footer>
+        <button type="submit"><b>GENERATE</b> CTRL + ⏎</button>
+        <button><b>EXPLORE</b> CTRL + SPACE </button>
+        <button>...</button>
+       </footer>
+       <div>
+        <button><a href=""></a></button>
+       </div>
+    </div>
+    <hr class="vertical-hr">
+    <div class="main2">
+        <label for="Dependencies"><b>Dependencies</b></label>
+        <button type="submit" id="show-dependencies-btn"><b>ADD DEPENDENCIES...</b> CTRL+B</button>
+        <hr>
+        <div id="dependencies-list" class="dependencies-container" style="display: none;">
+            <ul>
+              <li>Spring Boot Starter Web</li>
+              <li>Spring Boot Starter Data JPA</li>
+              <li>Spring Boot Starter Security</li>
+              <li>Spring Boot Starter Thymeleaf</li>
+              <li>Spring Boot Starter Test</li>
+              <li>Spring Boot Starter Actuator</li>
+              <li>Spring Boot Starter Validation</li>
+              <li>Spring Boot Starter JDBC</li>
+              <li>Spring Boot Starter Mail</li>
+              <li>Spring Boot Starter OAuth2 Client</li>
+              <!-- Ajoutez d'autres dépendances ici -->
+            </ul>
+          </div>
+          
+          <!-- Zone où les dépendances sélectionnées seront affichées -->
+          <div id="added-dependencies" class="added-dependencies-container">
+            <!-- Les dépendances sélectionnées seront ajoutées ici -->
+          </div>
+    </div>
+    <script>
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const lightModeBtn = document.getElementById('lightModeBtn');
+
+        // Événement pour activer le mode sombre
+        darkModeBtn.addEventListener('click', () => {
+            document.body.classList.add('dark-mode');
+        });
+
+        // Événement pour activer le mode clair
+        lightModeBtn.addEventListener('click', () => {
+            document.body.classList.remove('dark-mode');
+        });
+                // Récupérer les éléments HTML nécessaires
+const showDependenciesButton = document.getElementById("show-dependencies-btn");
+const dependenciesList = document.getElementById("dependencies-list");
+const addedDependenciesContainer = document.getElementById("added-dependencies");
+
+// Afficher la liste des dépendances au clic sur le bouton
+showDependenciesButton.addEventListener("click", function(event) {
+  // Empêcher la propagation de l'événement pour ne pas fermer la liste
+  event.stopPropagation();
+  
+  // Vérifier si la liste est actuellement visible
+  if (dependenciesList.style.display === "none" || dependenciesList.style.display === "") {
+    dependenciesList.style.display = "block"; // Affiche la liste
+  } else {
+    dependenciesList.style.display = "none"; // Masque la liste
+  }
+});
+
+// Ajouter une dépendance au clic sur un élément de la liste
+document.querySelectorAll("#dependencies-list ul li").forEach(function(item) {
+  item.addEventListener("click", function() {
+    // Crée un nouvel élément pour la dépendance sélectionnée
+    var newDependency = document.createElement("div");
+    newDependency.textContent = item.textContent;  // Ajoute le nom de la dépendance
+    addedDependenciesContainer.appendChild(newDependency);  // L'ajoute à la zone des dépendances ajoutées
+
+    // Masquer l'élément sélectionné dans la liste
+    item.style.display = "none"; 
+  });
+});
+
+// Masquer la liste des dépendances si on clique en dehors de la liste ou du bouton
+document.addEventListener("click", function(event) {
+  const isClickInside = dependenciesList.contains(event.target) || showDependenciesButton.contains(event.target);
+
+  if (!isClickInside) {
+    dependenciesList.style.display = "none";  // Masque la liste des dépendances si le clic est en dehors
+  }
+});
+
+    </script>
+</body>
+</html>
