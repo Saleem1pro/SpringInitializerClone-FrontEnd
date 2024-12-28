@@ -132,28 +132,64 @@
         max-width: 1400px;
         }
         /* Zone contenant les dépendances sélectionnées (limitées à 330px de hauteur) */
-.added-dependencies-container {
-  max-height: 330px;  /* Hauteur maximale pour la zone d'ajout */
-  overflow-y: auto;   /* Permet le défilement vertical */
-  border: 1px solid #ccc;  /* Optionnel : Ajoute une bordure autour de la zone */
-  padding: 10px;  /* Optionnel : Ajoute du padding autour du contenu */
-}
+        .added-dependencies-container {
+        max-height: 330px;  /* Hauteur maximale pour la zone d'ajout */
+        overflow-y: auto;   /* Permet le défilement vertical */
+        border: 1px solid #ccc;  /* Optionnel : Ajoute une bordure autour de la zone */
+        padding: 10px;  /* Optionnel : Ajoute du padding autour du contenu */
+        }
 
-/* Zone contenant la liste des dépendances disponibles */
-.dependencies-container {
-  max-height: 330px;  /* Limite la hauteur de la zone d'affichage */
-  overflow-y: auto;   /* Permet le défilement vertical si nécessaire */
-  padding: 10px;  /* Optionnel : Ajoute un peu de padding autour du contenu */
-  background-color: #fff;  /* Ajoute un fond blanc */
-  position: absolute;  /* Positionner la liste en absolu par rapport au bouton */
-  z-index: 10;  /* Assure que la liste soit au-dessus du reste du contenu */
-}
+        /* Zone contenant la liste des dépendances disponibles */
+        .dependencies-container {
+        max-height: 330px;  /* Limite la hauteur de la zone d'affichage */
+        overflow-y: auto;   /* Permet le défilement vertical si nécessaire */
+        padding: 10px;  /* Optionnel : Ajoute un peu de padding autour du contenu */
+        background-color: #fff;  /* Ajoute un fond blanc */
+        position: absolute;  /* Positionner la liste en absolu par rapport au bouton */
+        z-index: 10;  /* Assure que la liste soit au-dessus du reste du contenu */
+        }
+        .github-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333333; /* GitHub dark gray */
+            border: 1px solid #333333;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            width: 65px;
+        }
 
+        /* Button hover effect */
+        .github-button:hover {
+            background-color: #24292f; /* GitHub hover color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image styling */
+        .github-button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Anchor inside button */
+        .github-button a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <h2>Project builder</h2>
+    <h2>Spring Clone Project builder</h2>
     <div class="toggle-container">
+        <button class="github-button">
+            <a href="https://github.com/Saleem1pro/SpringInitializerClone-FrontEnd" target="_blank">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" id="github">
+            </a>
+        </button> 
         <!-- Bouton pour le mode sombre -->
         <button class="toggle-btn dark-mode-btn" id="darkModeBtn">
             <i>🌙</i>
@@ -242,9 +278,6 @@
         <button><b>EXPLORE</b> CTRL + SPACE </button>
         <button>...</button>
        </footer>
-       <div>
-        <button><a href=""></a></button>
-       </div>
     </div>
     <hr class="vertical-hr">
     <div class="main2">
